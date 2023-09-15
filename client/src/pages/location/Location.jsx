@@ -1,5 +1,5 @@
 /*global google */
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { GoogleMap, MarkerF, CircleF, useLoadScript } from "@react-google-maps/api";
 import { places } from "../../data/places";
 
