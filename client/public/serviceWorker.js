@@ -1,5 +1,5 @@
 const CACHE_NAME = "version-1";
-const urlsToCache = ['index.html', 'offline.html'];
+const urlsToCache = ['index.html', 'public.html'];
 
 const self = this;
 
@@ -42,3 +42,7 @@ self.addEventListener('activate', (event) => {
 
   )
 });
+
+self.addEventListener ('push', async (event) => {
+  console.log ("notifications will be displayed here");
+})
