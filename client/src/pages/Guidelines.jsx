@@ -20,26 +20,35 @@ const style = {
 
 const Guidelines = () => {
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [id, setId] = React.useState(null);
+  const [ele, setEle] = React.useState(null);
+  const handleOpen = (id) => {
+    setOpen(true);
+    setId(id);
+  };
+  React.useEffect(() => {
+    const selectedId = safetyRecommendations.filter(
+      (currEle) => currEle.id === id
+    );
+    setEle(selectedId[0]);
+  }, [id]);
   const handleClose = () => setOpen(false);
   return (
     <div className="flex flex-wrap md:mx-24">
       {safetyRecommendations.map((currEle) => {
         return (
-          <>
-            <div
-              key={currEle.id}
-              className="border-2 m-20 flex flex-col cursor-pointer  rounded-xl"
-              onClick={handleOpen}
-            >
-              <img src="/icon.png" alt="Images" className="rounded-lg w-40" />
-              <div className="flex justify-center border-2">
-                <h1 className="text-2xl font-bold text-center m-2 text-gray-800">
-                  {currEle.name}
-                </h1>
-              </div>
+          <div
+            key={currEle.id}
+            className="border-2 m-20 flex flex-col cursor-pointer  rounded-xl"
+            onClick={() => handleOpen(currEle.id)}
+          >
+            <img src="/icon.png" alt="Images" className="rounded-lg w-40" />
+            <div className="flex justify-center border-2">
+              <h1 className="text-2xl font-bold text-center m-2 text-gray-800">
+                {currEle.name}
+              </h1>
             </div>
-          </>
+          </div>
         );
       })}
       <Modal
@@ -58,12 +67,10 @@ const Guidelines = () => {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Tornado
+              {ele?.name}
             </Typography>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              A tornado is a violent windstorm characterized by twisting,
-              funnel-shaped clouds. It can cause widespread destruction and pose
-              a serious threat to life and property.
+              {ele?.description}
             </Typography>
           </Box>
         </Fade>
