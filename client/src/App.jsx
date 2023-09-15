@@ -14,7 +14,9 @@ import NotFound from "./pages/notFound/NotFound";
 import Login from "./pages/login/Login";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Header from "./components/Header";
-
+import { regSw } from './helper';
+import { useEffect } from "react";
+import SubscribeButn from "./components/SubscribeButn";
 
 const useAuth = () => {
   const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -33,6 +35,9 @@ const ProtectedRoutes = () => {
 function App() {
   const queryClient = new QueryClient();
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  useEffect(() => {
+    regSw();
+  }, []);
   return (
     <>
       <Router>
@@ -41,6 +46,7 @@ function App() {
             <GoogleOAuthProvider clientId={clientId}>
               <Navbar/>
               <Header/>
+              <SubscribeButn/>
               <Routes>
                 <Route exact path="/" element={<Login />} />
                 {/* <Route element={<ProtectedRoutes />}> */}
