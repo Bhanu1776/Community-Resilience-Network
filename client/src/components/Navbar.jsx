@@ -34,9 +34,9 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed md:bg-white border-t-[1px] md:border-b-[1px] flex justify-center bottom-0 md:top-0 left-0 z-[100] h-16 w-full">
-        <nav className="flex flex-wrap items-center justify-between w-full max-w-[1200px] h-full  text-lg text-gray-700 bg-white">
-          <div className="flex px-4 py-2 md:hidden items-center justify-between w-full">
+      <header className="fixed md:bg-white border-t-[1px] font-Poppins md:border-b-[1px] flex justify-center bottom-0 md:top-0 left-0 z-[100] h-16 w-full">
+        <nav className="flex flex-wrap items-center px-24 justify-between w-full max-w-[1200px] h-full  text-lg text-gray-700 bg-white">
+          <div className="flex px-4 py-2 md:hidden items-center  justify-between w-full">
             {icons.map((icon) => (
               <Link to={icon.url} key={icon.id}>
                 <span className="hover:text-pink-800 ease-in-out duration-200">
@@ -47,8 +47,8 @@ const Navbar = () => {
           </div>
 
           <div className="hidden p-2  w-full md:flex md:items-center justify-between ">
-            <p className=" font-bold tracking-wide">CommuniSafe</p>
-            <div className="flex w-[60%] justify-end gap-4 items-center">
+            <p className=" font-bold text-[16px] tracking-wide">CommuniSafe</p>
+            <div className="flex w-[60%] justify-end gap-8 items-center">
               {icons.map((icon) => (
                 <Link key={icon.id} to={icon.url}>
                   <span className=" text-[15px] font-semibold">
