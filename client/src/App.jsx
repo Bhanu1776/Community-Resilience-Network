@@ -1,9 +1,13 @@
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from "react-router-dom"
 import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Navbar from "./components/Navbar";
+import Guidelines from "./pages/Guidelines";
 import { Home } from "./pages/home";
 import Location from "./pages/location/Location";
 import NotFound from "./pages/notFound/NotFound";
@@ -13,7 +17,7 @@ import Header from "./components/Header";
 
 
 const useAuth = () => {
-  const user = JSON.parse(localStorage.getItem('currentUser'));
+  const user = JSON.parse(localStorage.getItem("currentUser"));
   if (user) {
     return true;
   }
@@ -27,7 +31,7 @@ const ProtectedRoutes = () => {
 };
 
 function App() {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
   const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
   return (
     <>
@@ -40,8 +44,8 @@ function App() {
               <Routes>
                 <Route exact path="/" element={<Login />} />
                 <Route element={<ProtectedRoutes />}>
-                  <Route exact path='/home' element={< Home />} />
-                  <Route path='/location' element={<Location />} />
+                  <Route exact path="/home" element={<Home />} />
+                  <Route path="/location" element={<Location />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />
@@ -49,7 +53,6 @@ function App() {
             </GoogleOAuthProvider>
           </QueryClientProvider>
         </div>
-
       </Router>
     </>
   );
