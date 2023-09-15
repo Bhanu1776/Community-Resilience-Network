@@ -1,16 +1,16 @@
 import * as React from "react";
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 // import newRequest from "../utils/newRequest";
 // import upload from "../utils/upload";
 
 export const Home = () => {
   const [open, setOpen] = React.useState(false);
-  const [category, setcategory] = React.useState("")
+  const [category, setcategory] = React.useState("");
 
   const handleChange = (event) => {
     setcategory(event.target.value);
@@ -27,10 +27,9 @@ export const Home = () => {
     e.preventDefault();
 
     // const url = await upload(file);
-
   };
   return (
-    <><div className="flex items-center justify-center w-full min-h-screen">
+    <div className="flex bg-gradient-to-b from-gray-50 to-pink-200 items-center justify-center w-full min-h-screen">
       <button
         className="relative top-0 left-0 p-20 text-4xl font-semibold tracking-wider text-white transition-all duration-150 ease-in-out bg-pink-700 rounded-full hover:bg-pink-800 aspect-square outline hover:outline-2 hover:outline-offset-2 hover:outline-neutral-800"
         onClick={handleOpen}
@@ -44,8 +43,10 @@ export const Home = () => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Raise an Alert</DialogTitle>
         <DialogContent>
-          <FormControl className="w-[500px]"  fullWidth>
-            <InputLabel className="mt-2 " id="demo-simple-select-label">Category</InputLabel>
+          <FormControl className="w-[500px]" fullWidth>
+            <InputLabel className="mt-2 " id="demo-simple-select-label">
+              Category
+            </InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
@@ -58,7 +59,6 @@ export const Home = () => {
               <MenuItem value={"Weather"}>Weather related</MenuItem>
             </Select>
           </FormControl>
-          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
@@ -66,6 +66,5 @@ export const Home = () => {
         </DialogActions>
       </Dialog>
     </div>
-    </>
   );
 };
