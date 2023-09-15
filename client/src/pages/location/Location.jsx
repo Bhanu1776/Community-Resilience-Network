@@ -3,6 +3,22 @@ import { useEffect, useMemo, useState } from "react";
 import { GoogleMap, MarkerF, CircleF, useLoadScript } from "@react-google-maps/api";
 import { places } from "../../data/places";
 
+// eslint-disable-next-line react/prop-types
+function CategoryFilter({ onSelectCategory }) {
+  const uniqueCategories = [...new Set(places.map(place => place.category))];
+
+  return (
+    <div className="p-2 bg-white rounded shadow"><select onChange={e => onSelectCategory(e.target.value)}>
+      <option value="">All</option>
+      {uniqueCategories.map(category => (
+        <option key={category} value={category}>
+          {category}
+        </option>
+      ))}
+    </select></div>
+
+  );
+}
 const Location = () => {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
@@ -42,6 +58,10 @@ const Location = () => {
     map.fitBounds(bounds);
 
   };
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const filteredPlaces = selectedCategory
+    ? places.filter(place => place.category === selectedCategory)
+    : places;
 
   return (
     <div className="flex w-full min-h-screen bg-blue-200">
@@ -55,6 +75,9 @@ const Location = () => {
       </div> */}
       {/* map */}
       <div className="flex flex-1 bg-white">
+        <div className="fixed z-[150] top-16   right-4">
+          <CategoryFilter onSelectCategory={setSelectedCategory} />
+        </div>
         {!isLoaded ? (
           <h1>{status}</h1>
         ) : (
@@ -81,7 +104,10 @@ const Location = () => {
               visible: true,
               strokeColor: "red"
             }} />
-            {places.map(({ id, position, icon }) => (
+            {/* {places.map(({ id, position, icon }) => (
+              <MarkerF key={id} position={position} icon={icon} />
+            ))} */}
+            {filteredPlaces.map(({ id, position, icon }) => (
               <MarkerF key={id} position={position} icon={icon} />
             ))}
           </GoogleMap>
