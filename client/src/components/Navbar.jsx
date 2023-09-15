@@ -56,11 +56,13 @@ const Navbar = () => {
                   </span>
                 </Link>
               ))}
-              <img
-                className="h-8 w-8 rounded-full"
-                src={user?.profileImg}
-                alt={user?.username}
-              />
+              {user && (
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={user?.profileImg}
+                  alt={user?.username}
+                />
+              )}
             </div>
           </div>
         </nav>
