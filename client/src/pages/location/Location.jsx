@@ -2,24 +2,35 @@
 import { useEffect, useMemo, useState } from "react";
 import { GoogleMap, MarkerF, CircleF, useLoadScript } from "@react-google-maps/api";
 import { places } from "../../data/places";
-
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest.js";
 // eslint-disable-next-line react/prop-types
 function CategoryFilter({ onSelectCategory }) {
-  const uniqueCategories = [...new Set(places.map(place => place.category))];
+  const uniqueCategories = [...new Set(places.map((place) => place.category))];
 
   return (
-    <div className="p-2 bg-white rounded shadow"><select onChange={e => onSelectCategory(e.target.value)}>
-      <option value="">All</option>
-      {uniqueCategories.map(category => (
-        <option key={category} value={category}>
-          {category}
-        </option>
-      ))}
-    </select></div>
-
+    <div className="p-2 bg-white rounded shadow">
+      <select onChange={(e) => onSelectCategory(e.target.value)}>
+        <option value="">All</option>
+        {uniqueCategories.map((category) => (
+          <option key={category} value={category}>
+            {category}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 const Location = () => {
+  const user = JSON.parse(localStorage.getItem("currentUser"))
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["markers"],
+    queryFn: () =>
+      newRequest.get(`incidents`).then((res) => {
+        return res.data;
+      }),
+  });
+
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState("Loading...");
@@ -75,9 +86,7 @@ const Location = () => {
       </div> */}
       {/* map */}
       <div className="flex flex-1 bg-white">
-        <div className="fixed z-[150] top-16   right-4">
-          <CategoryFilter onSelectCategory={setSelectedCategory} />
-        </div>
+        
         {!isLoaded ? (
           <h1>{status}</h1>
         ) : (
@@ -104,15 +113,29 @@ const Location = () => {
               visible: true,
               strokeColor: "red"
             }} />
-            {/* {places.map(({ id, position, icon }) => (
-              <MarkerF key={id} position={position} icon={icon} />
-            ))} */}
-            {filteredPlaces.map(({ id, position, icon }) => (
-              <MarkerF key={id} position={position} icon={icon} />
-            ))}
+            
+            {!isLoading && !error && data && data.length > 0 && (
+              data
+                .filter((incident) =>
+                  selectedCategory ? incident.category === selectedCategory : true
+                )
+                .map((incident) => (
+                  <MarkerF
+                    key={incident._id}
+                    position={{
+                      lat: incident.latitude,
+                      lng: incident.longitude,
+                    }}
+                    icon={{ url: incident.icon }}
+                  />
+                ))
+            )}
           </GoogleMap>
         )}
       </div>
+      <div className="fixed top-20 right-4 z-[150]">
+          <CategoryFilter onSelectCategory={setSelectedCategory} />
+        </div>
     </div>
   )
 }
