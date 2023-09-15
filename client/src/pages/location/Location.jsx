@@ -1,6 +1,6 @@
 /*global google */
 import { useEffect, useMemo, useState } from "react";
-import { GoogleMap, MarkerF, CircleF, useLoadScript, DirectionsRenderer } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, CircleF, useLoadScript } from "@react-google-maps/api";
 import { places } from "../../data/places";
 
 // eslint-disable-next-line react/prop-types
@@ -23,7 +23,6 @@ const Location = () => {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState("Loading...");
-  const [directions, setdirections] = useState();
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -57,18 +56,7 @@ const Location = () => {
     map.fitBounds(bounds);
 
   };
-  const fetchDir = (position)=>{
-    const service = new google.maps.DirectionsService();
-    service.route({
-      origin : center,
-      destination : position,
-      travelMode : google.maps.TravelMode.DRIVING
-    },(res,st)=>{
-      if (st=="OK" && res) {
-        setdirections(res)
-      }
-    })
-  }
+  
   const [selectedCategory, setSelectedCategory] = useState("");
   const filteredPlaces = selectedCategory
     ? places.filter(place => place.category === selectedCategory)
