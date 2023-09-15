@@ -63,7 +63,7 @@ const Navbar = () => {
                     </Link>
                   ))
                 }
-                <img className='h-8 w-8 rounded-full' src={user.profileImg} alt={user.username} />
+                <img className='h-8 w-8 rounded-full' src={user?.profileImg} alt={user?.username} />
               </div>
             </div>
           </nav>
