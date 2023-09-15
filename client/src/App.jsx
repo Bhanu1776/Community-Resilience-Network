@@ -1,11 +1,11 @@
-import "./App.css";
+import Navbar from "./components/Navbar";
+import { Home } from "./pages/home";
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold text-red-500 underline">
-        HackX Hackathon
-      </h1>
+      <Navbar />
+      <Home />
     </>
   );
 }
