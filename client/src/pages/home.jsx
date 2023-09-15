@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Backdrop from "@mui/material/Backdrop";
+// import newRequest from "../utils/newRequest";
+// import upload from "../utils/upload";
 
 const style = {
   position: "absolute",
@@ -18,12 +20,19 @@ const style = {
 
 export const Home = () => {
   const [open, setOpen] = React.useState(false);
+  const [file, setFile] = React.useState(null);
   const handleOpen = () => {
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // const url = await upload(file);
+    
   };
   return (
     <><div className="flex items-center justify-center w-full min-h-screen">
@@ -52,7 +61,7 @@ export const Home = () => {
       >
         <Fade in={open}>
           <Box sx={style}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <label>
                 Location:
                 <input type="text" name="location" />
@@ -63,7 +72,7 @@ export const Home = () => {
               </label>
               <label>
                 Add Photo:
-                <input type="file" name="disasterPhoto" />
+                <input type="file" name="disasterPhoto" onChange={(e) => setFile(e.target.files[0])} />
               </label>
               <input type="submit" value="Submit" />
             </form>
