@@ -42,7 +42,11 @@ const Guidelines = () => {
             className="border-2 m-20 flex flex-col cursor-pointer  rounded-xl"
             onClick={() => handleOpen(currEle.id)}
           >
-            <img src="/icon.png" alt="Images" className="rounded-lg w-40" />
+            <img
+              src={`https://source.unsplash.com/1600x900/?${currEle.name}`}
+              alt="Images"
+              className="rounded-lg w-40 aspect-square object-cover"
+            />
             <div className="flex justify-center border-2">
               <h1 className="text-2xl font-bold text-center m-2 text-gray-800">
                 {currEle.name}
