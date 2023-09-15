@@ -14,9 +14,10 @@ import NotFound from "./pages/notFound/NotFound";
 import Login from "./pages/login/Login";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Header from "./components/Header";
-import { regSw } from './helper';
+import { regSw } from "./helper";
 import { useEffect } from "react";
 import SubscribeButn from "./components/SubscribeButn";
+import Landing from "./pages/Landing";
 
 const useAuth = () => {
   const user = JSON.parse(localStorage.getItem("currentUser"));
@@ -44,15 +45,16 @@ function App() {
         <div className=" flex w-full h-screen">
           <QueryClientProvider client={queryClient}>
             <GoogleOAuthProvider clientId={clientId}>
-              <Navbar/>
-              <Header/>
-              <SubscribeButn/>
+              <Navbar />
+              <Header />
+              <SubscribeButn />
               <Routes>
-                <Route exact path="/" element={<Login />} />
+                <Route exact path="/" element={<Landing />} />
                 {/* <Route element={<ProtectedRoutes />}> */}
                 <Route exact path="/home" element={<Home />} />
                 <Route path="/location" element={<Location />} />
                 <Route path="/safety" element={<Guidelines />} />
+                <Route path="/login" element={<Login />} />
                 {/* </Route> */}
 
                 <Route path="*" element={<NotFound />} />
