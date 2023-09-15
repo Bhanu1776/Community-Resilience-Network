@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import Subscription from "./models/subscription.model.js";
 
 import authRoute from "./routes/auth.route.js";
-
+import incidentRoute from "./routes/incident.route.js";
 const app = express();
 dotenv.config();
 mongoose.set("strictQuery", true);
@@ -27,6 +27,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", authRoute);
+app.use("/api/incidents", incidentRoute);
 
 app.use("/about", (req, res) => {
   res.send("CommuniSafe: A Community Resilience Network");

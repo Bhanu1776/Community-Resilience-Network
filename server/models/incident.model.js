@@ -2,10 +2,15 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const IncidentSchema = new Schema({
-    userID : {
-        type : Number,
+    userId : {
+        type : String,
         required: true
     },
+    userInfo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+      },
     latitude : {
         type : Number,
         required: true
@@ -14,13 +19,18 @@ const IncidentSchema = new Schema({
         type : Number,
         required: true
     },
-    photo : {
+    photoUrl : {
         type : String,
         required: false
     },
-    severity : {
+    category : {
         type : String,
-        required: false
+        required: true,
+        enum:["Natural", "Weather","Emergency", "Shelter", "Hospital","CSO"]
     },
+    icon:{
+       type:String,
+       required:true
+    }
 })
 export default mongoose.model("Incident", IncidentSchema);
