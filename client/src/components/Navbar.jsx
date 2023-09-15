@@ -35,23 +35,20 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed bottom-0 md:top-0 left-0 z-[100] w-full"
-      >
-        <header>
-          <nav className="flex flex-wrap items-center justify-between w-full h-16 text-lg text-gray-700 bg-white"
-          >
-            <div className='flex border-t-[1px] p-2 border-gray-400 md:hidden items-center justify-between w-full'>
+      <header className="fixed md:bg-white border-t-[1px] md:border-b-[1px] flex justify-center bottom-0 md:top-0 left-0 z-[100] h-16 w-full">
+          <nav className="flex flex-wrap items-center justify-between w-full max-w-[1200px] h-full  text-lg text-gray-700 bg-white">
+            <div className='flex px-4 py-2 md:hidden items-center justify-between w-full'>
               {
                 icons.map((icon) => (
                   <Link to={icon.url} key={icon.id}>
-                    <span>{icon.icon}</span>
+                    <span className='hover:text-pink-800 ease-in-out duration-200'>{icon.icon}</span>
                   </Link>
                 ))
               }
             </div>
 
             <div
-              className="hidden p-2  border-b-[1px] border-gray-300 w-full md:flex md:items-center justify-between "
+              className="hidden p-2  w-full md:flex md:items-center justify-between "
 
             >
               <p className=' font-bold tracking-wide'>CommuniSafe</p>
@@ -67,7 +64,6 @@ const Navbar = () => {
               </div>
             </div>
           </nav>
-        </header>
       </header>
     </>
   );
