@@ -4,6 +4,9 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import mongoose from 'mongoose';
 
+import authRoute from './routes/auth.route.js'
+
+
 const app = express()
 dotenv.config()
 mongoose.set('strictQuery',true)
@@ -24,6 +27,7 @@ app.set("trust proxy", 1);
 app.use(express.json())
 app.use(cookieParser())
 
+app.use('/api/auth', authRoute)
 
 
 app.use('/about', (req,res)=>{
