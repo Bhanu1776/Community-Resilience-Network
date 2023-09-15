@@ -1,5 +1,19 @@
+import { useEffect } from "react";
 import "../styles/styles.css";
+import { useTranslation } from "react-i18next";
+
 const Landing = () => {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const lang = navigator.language;
+    i18n.changeLanguage(lang);
+  }, []);
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <div>
       <a href="#" className="scrolltop" id="scroll-top">
@@ -9,29 +23,29 @@ const Landing = () => {
       <header className="l-header" id="header">
         <nav className="nav bd-container">
           <a href="#" className="nav__logo">
-            CommuniSafe
+            {t("CommuniSafe")} {/* Translate the logo text */}
           </a>
 
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
                 <a href="#home" className="nav__link active-link">
-                  Home
+                  {t("Home")}
                 </a>
               </li>
               <li className="nav__item">
                 <a href="#share" className="nav__link">
-                  Learn
+                  {t("Learn")} {/* Translate "Learn" */}
                 </a>
               </li>
               <li className="nav__item">
                 <a href="#decoration" className="nav__link">
-                  Features
+                  {t("Features")} {/* Translate "Features" */}
                 </a>
               </li>
               <li className="nav__item">
                 <a href="/login" className="nav__link">
-                  <h3 className="text-pink-700">LogIn</h3>
+                  <h3 className="text-pink-700">{t("LogIn")}</h3>
                 </a>
               </li>
             </ul>
@@ -52,15 +66,15 @@ const Landing = () => {
 
             <div className="home__data">
               <h1 className="home__title" style={{ width: "438px" }}>
-                Building Stronger Communities Together
+                {t("Building Stronger Communities Together")}
               </h1>
               <p className="home__description">
-                Discover how our Community Resilience Network empowers
-                individuals and neighborhoods to thrive in the face of
-                challenges.
+                {t(
+                  "Discover how our Community Resilience Network empowers individuals and neighborhoods to thrive in the face of challenges."
+                )}
               </p>
               <a href="/login" className="button">
-                Get Started
+                {t("Get Started")}
               </a>
             </div>
           </div>
@@ -70,15 +84,15 @@ const Landing = () => {
           <div className="share__container bd-grid">
             <div className="share__data">
               <h2 className="section-title-center font-semibold">
-                Your Safety, Our Priority
+                {t("Your Safety, Our Priority")}
               </h2>
               <p className="share__description">
-                Learn how our Community Resilience Network enhances safety
-                measures, emergency response, and disaster preparedness in your
-                area.
+                {t(
+                  "Learn how our Community Resilience Network enhances safety measures, emergency response, and disaster preparedness in your area."
+                )}
               </p>
               <a href="#" className="button">
-                Learn Together
+                {t("Learn Together")}
               </a>
             </div>
 
@@ -90,7 +104,7 @@ const Landing = () => {
 
         <section className="decoration section bd-container" id="decoration">
           <h2 className="section-title font-semibold">
-            Exciting features of <br /> CommuniSafe
+            {t("Exciting features of")} <br /> CommuniSafe
           </h2>
           <div className="decoration__container bd-grid">
             <div className="decoration__data">
@@ -99,9 +113,9 @@ const Landing = () => {
                 alt=""
                 className="decoration__img m-5 ml-9"
               />
-              <h3 className="decoration__title">Community Networking</h3>
+              <h3 className="decoration__title">{t("Community Networking")}</h3>
               <a href="#" className="button button-link">
-                Checkout
+                {t("Checkout")}
               </a>
             </div>
 
@@ -111,9 +125,9 @@ const Landing = () => {
                 alt=""
                 className="decoration__img m-5 ml-9"
               />
-              <h3 className="decoration__title">Emergency Alerts</h3>
+              <h3 className="decoration__title">{t("Emergency Alerts")}</h3>
               <a href="#" className="button button-link">
-                Checkout
+                {t("Checkout")}
               </a>
             </div>
 
@@ -123,9 +137,9 @@ const Landing = () => {
                 alt=""
                 className="decoration__img m-5 ml-9"
               />
-              <h3 className="decoration__title">Community Forums</h3>
+              <h3 className="decoration__title">{t("Community Forums")}</h3>
               <a href="#" className="button button-link">
-                Checkout
+                {t("Checkout")}
               </a>
             </div>
           </div>
@@ -135,22 +149,22 @@ const Landing = () => {
           <div className="send__container bd-container bd-grid">
             <div className="send__content">
               <h2 className="section-title-center send__title">
-                Text your Queries!
+                {t("Text your Queries!")}
               </h2>
               <p className="send__description">
-                Explore how our community network offers crucial support
-                systems, resources, and solidarity during crises and
-                emergencies.
+                {t(
+                  "Explore how our community network offers crucial support systems, resources, and solidarity during crises and emergencies."
+                )}
               </p>
               <form action="">
                 <div className="send__direction">
                   <input
                     type="text"
-                    placeholder="Message"
+                    placeholder={t("Message")}
                     className="send__input"
                   />
                   <a href="#" className="button">
-                    Send
+                    {t("Send")}
                   </a>
                 </div>
               </form>
@@ -168,58 +182,70 @@ const Landing = () => {
           <div className="footer__content">
             <h3 className="footer__title">
               <a href="#" className="footer__logo">
-                CommuniSafe
+                {t("CommuniSafe")}
               </a>
             </h3>
             <p className="footer__description">
-              Join the Resilience Revolution
+              {t("Join the Resilience Revolution")}
             </p>
           </div>
 
           <div className="footer__content">
-            <h3 className="footer__title">Our Services</h3>
+            <h3 className="footer__title">{t("Translations")}</h3>
             <ul>
               <li>
-                <a href="#" className="footer__link">
-                  Pricing
+                <a
+                  href="#"
+                  className="footer__link"
+                  onClick={() => changeLanguage("en")}
+                >
+                  {t("English")}
                 </a>
               </li>
               <li>
-                <a href="#" className="footer__link">
-                  Discounts
+                <a
+                  href="#"
+                  className="footer__link"
+                  onClick={() => changeLanguage("hi")}
+                >
+                  {t("Hindi")}
                 </a>
               </li>
               <li>
-                <a href="#" className="footer__link">
-                  Shipping mode
+                <a
+                  href="#"
+                  className="footer__link"
+                  onClick={() => changeLanguage("te")}
+                >
+                  {t("Telugu")}
                 </a>
               </li>
             </ul>
           </div>
 
           <div className="footer__content">
-            <h3 className="footer__title">Our Company</h3>
+            <h3 className="footer__title">{t("Our Company")}</h3>
             <ul>
               <li>
                 <a href="#" className="footer__link">
-                  Blog
+                  {t("Blog")}
                 </a>
               </li>
               <li>
                 <a href="#" className="footer__link">
-                  About us
+                  {t("About us")}
                 </a>
               </li>
               <li>
                 <a href="#" className="footer__link">
-                  Our mision
+                  {t("Our mission")}
                 </a>
               </li>
             </ul>
           </div>
 
           <div className="footer__content">
-            <h3 className="footer__title">Social</h3>
+            <h3 className="footer__title">{t("Social")}</h3>
             <a href="#" className="footer__social">
               <i className="bx bxl-facebook-circle "></i>
             </a>
@@ -233,7 +259,7 @@ const Landing = () => {
         </div>
 
         <p className="footer__copy">
-          &#169; 2023 HackX CommuniSafe. All right reserved
+          &#169; 2023 HackX {t("CommuniSafe")}. {t("All right reserved")}
         </p>
       </footer>
     </div>
