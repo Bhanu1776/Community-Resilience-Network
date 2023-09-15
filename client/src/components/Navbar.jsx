@@ -1,13 +1,35 @@
+import { AiFillHome, AiFillSafetyCertificate } from 'react-icons/ai'
+import { FaLocationDot } from 'react-icons/fa6'
+import { FaUserAlt } from 'react-icons/fa'
+const icons = [
+  {
+    id: 1,
+    icon: <AiFillHome />,
+    name: "Home"
+  },
+  {
+    id: 2,
+    icon: <FaLocationDot />,
+    name: "Location"
+  },
+  {
+    id: 3,
+    icon: <AiFillSafetyCertificate />,
+    name: "Saftey Tips"
+  },
+  {
+    id: 4,
+    icon: <FaUserAlt />,
+    name: "Profile"
+  },
+]
+
 const Navbar = () => {
   return (
     <>
       <body
         className="
-      antialiased
-      bg-gradient-to-r
-      from-pink-300
-      via-pink-300
-      to-indigo-400
+      fixed bottom-0 md:top-0 left-0 z-[100] w-full
     "
       >
         <header>
@@ -17,6 +39,7 @@ const Navbar = () => {
           items-center
           justify-between
           w-full
+          h-16
           py-4
           md:py-0
           px-4
@@ -24,67 +47,23 @@ const Navbar = () => {
           bg-white
         "
           >
-            <div>
-              <a href="#">HackX</a>
+            <div className='flex md:hidden items-center justify-between w-full'>
+              {
+                icons.map((icon) => <span key={icon.id}>{icon.icon}</span>)
+              }
             </div>
 
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              id="menu-button"
-              className="h-6 w-6 cursor-pointer md:hidden block"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-
             <div
-              className="hidden w-full md:flex md:items-center md:w-auto"
-              id="menu"
+              className="hidden w-full md:flex md:items-center justify-between "
+
             >
-              <ul
-                className="
-              pt-4
-              text-base text-gray-700
-              md:flex
-              md:justify-between 
-              md:pt-0"
-              >
-                <li>
-                  <a className="md:p-4 py-2 block hover:text-pink-400" href="#">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a className="md:p-4 py-2 block hover:text-pink-400" href="#">
-                    Location
-                  </a>
-                </li>
-                <li>
-                  <a className="md:p-4 py-2 block hover:text-pink-400" href="#">
-                    Guidelines
-                  </a>
-                </li>
-                <li>
-                  <a className="md:p-4 py-2 block hover:text-pink-400" href="#">
-                    Profile
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="md:p-4 py-2 block hover:text-pink-400 text-pink-500"
-                    href="#"
-                  >
-                    Sign Up
-                  </a>
-                </li>
-              </ul>
+              <p>CommuniSafe</p>
+              <div className='flex w-[60%] justify-end gap-4 items-center'>
+                {
+                  icons.map((icon) => <span key={icon.id}>{icon.name}</span>)
+                }
+                <button>Sign In</button>
+              </div>
             </div>
           </nav>
         </header>
