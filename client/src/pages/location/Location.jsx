@@ -1,12 +1,12 @@
 /*global google */
 import { useEffect, useMemo, useState } from "react";
-import { GoogleMap, MarkerF, CircleF, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, CircleF, useLoadScript, DirectionsRenderer } from "@react-google-maps/api";
 import { places } from "../../data/places";
 
 // eslint-disable-next-line react/prop-types
 function CategoryFilter({ onSelectCategory }) {
   const uniqueCategories = [...new Set(places.map(place => place.category))];
-
+  
   return (
     <div className="p-2 bg-white rounded shadow"><select onChange={e => onSelectCategory(e.target.value)}>
       <option value="">All</option>
@@ -23,8 +23,7 @@ const Location = () => {
   const [lat, setLat] = useState(null);
   const [lng, setLng] = useState(null);
   const [status, setStatus] = useState("Loading...");
-
-
+  const [directions, setdirections] = useState();
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -58,6 +57,18 @@ const Location = () => {
     map.fitBounds(bounds);
 
   };
+  const fetchDir = (position)=>{
+    const service = new google.maps.DirectionsService();
+    service.route({
+      origin : center,
+      destination : position,
+      travelMode : google.maps.TravelMode.DRIVING
+    },(res,st)=>{
+      if (st=="OK" && res) {
+        setdirections(res)
+      }
+    })
+  }
   const [selectedCategory, setSelectedCategory] = useState("");
   const filteredPlaces = selectedCategory
     ? places.filter(place => place.category === selectedCategory)
@@ -75,7 +86,7 @@ const Location = () => {
       </div> */}
       {/* map */}
       <div className="flex flex-1 bg-white">
-        <div className="fixed z-[150] top-16   right-4">
+        <div className="fixed z-[150] top-16 right-4">
           <CategoryFilter onSelectCategory={setSelectedCategory} />
         </div>
         {!isLoaded ? (
@@ -88,6 +99,7 @@ const Location = () => {
             zoom={8}
             onLoad={onLoad}
           >
+            {/* {directions && <DirectionsRenderer directions={directions}/>} */}
             <MarkerF
               position={center}
               icon={"http://maps.google.com/mapfiles/ms/micons/man.png"}

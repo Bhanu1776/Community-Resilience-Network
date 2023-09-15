@@ -1,26 +1,21 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
-import Backdrop from "@mui/material/Backdrop";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 // import newRequest from "../utils/newRequest";
 // import upload from "../utils/upload";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 800,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
-
 export const Home = () => {
   const [open, setOpen] = React.useState(false);
-  const [file, setFile] = React.useState(null);
+  const [category, setcategory] = React.useState("")
+
+  const handleChange = (event) => {
+    setcategory(event.target.value);
+  };
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -32,7 +27,7 @@ export const Home = () => {
     e.preventDefault();
 
     // const url = await upload(file);
-    
+
   };
   return (
     <><div className="flex items-center justify-center w-full min-h-screen">
@@ -46,40 +41,31 @@ export const Home = () => {
           <span className="absolute inline-flex w-full h-full bg-red-100 rounded-full opacity-75 animate-ping"></span>
         </span>
       </button>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        slots={{ backdrop: Backdrop }}
-        slotProps={{
-          backdrop: {
-            timeout: 500,
-          },
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <form onSubmit={handleSubmit}>
-              <label>
-                Location:
-                <input type="text" name="location" />
-              </label>
-              <label>
-                Type of Disaster:
-                <input type="text" name="disasterType" />
-              </label>
-              <label>
-                Add Photo:
-                <input type="file" name="disasterPhoto" onChange={(e) => setFile(e.target.files[0])} />
-              </label>
-              <input type="submit" value="Submit" />
-            </form>
-          </Box>
-        </Fade>
-      </Modal>
-
-    </div><button>dfsahf</button></>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Raise an Alert</DialogTitle>
+        <DialogContent>
+          <FormControl className="w-[500px]"  fullWidth>
+            <InputLabel className="mt-2 " id="demo-simple-select-label">Category</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={category}
+              label="Category"
+              onChange={handleChange}
+            >
+              <MenuItem value={"Natural"}>Natural disasters</MenuItem>
+              <MenuItem value={"Emergency"}>Emergency</MenuItem>
+              <MenuItem value={"Weather"}>Weather related</MenuItem>
+            </Select>
+          </FormControl>
+          
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSubmit}>Send</Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+    </>
   );
 };
