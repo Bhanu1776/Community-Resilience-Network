@@ -20,7 +20,7 @@ const Landing = () => {
         <i className="bx bx-up-arrow-alt scrolltop__icon"></i>
       </a>
 
-      <header className="l-header" id="header">
+      <header className="l-header hidden md:block" id="header">
         <nav className="nav bd-container">
           <a href="#" className="nav__logo">
             {t("CommuniSafe")} {/* Translate the logo text */}
@@ -57,18 +57,25 @@ const Landing = () => {
         </nav>
       </header>
 
-      <main className="l-main flex flex-col mx-64">
-        <section className="home" id="home">
+      <main className="l-main flex flex-col w-screen overflow-x-hidden">
+        <section className="home mt-20 md:mt-0" id="home">
           <div className="home__container bd-container bd-grid">
             <div className="home__img">
-              <img src="/img/communities.png" alt="" className="w-80" />
+              <img
+                src="/img/communities.png"
+                alt=""
+                className="md:w-80 hidden md:block"
+              />
             </div>
 
             <div className="home__data">
-              <h1 className="home__title" style={{ width: "438px" }}>
+              <h1
+                className="home__title text-center md:text-left"
+                style={{ width: "438px" }}
+              >
                 {t("Building Stronger Communities Together")}
               </h1>
-              <p className="home__description">
+              <p className="home__description text-center md:text-left">
                 {t(
                   "Discover how our Community Resilience Network empowers individuals and neighborhoods to thrive in the face of challenges."
                 )}
@@ -81,7 +88,7 @@ const Landing = () => {
         </section>
 
         <section className="share section bd-container" id="share">
-          <div className="share__container bd-grid">
+          <div className="share__container bd-grid order-2">
             <div className="share__data">
               <h2 className="section-title-center font-semibold">
                 {t("Your Safety, Our Priority")}
@@ -96,8 +103,8 @@ const Landing = () => {
               </a>
             </div>
 
-            <div className="share__img">
-              <img src="/img/shield.png" alt="" className="w-80 ml-10" />
+            <div className="share__img order-1">
+              <img src="/img/shield.png" alt="" className="w-80 md:ml-10" />
             </div>
           </div>
         </section>
@@ -178,7 +185,7 @@ const Landing = () => {
       </main>
 
       <footer className="footer section">
-        <div className="footer__container bd-container bd-grid">
+        <div className="footer__container bd-container bd-grid flex flex-col md:flex-row">
           <div className="footer__content">
             <h3 className="footer__title">
               <a href="#" className="footer__logo">
