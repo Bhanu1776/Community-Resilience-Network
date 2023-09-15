@@ -43,10 +43,11 @@ function App() {
               <Header/>
               <Routes>
                 <Route exact path="/" element={<Login />} />
-                <Route element={<ProtectedRoutes />}>
-                  <Route exact path="/home" element={<Home />} />
-                  <Route path="/location" element={<Location />} />
-                </Route>
+                {/* <Route element={<ProtectedRoutes />}> */}
+                <Route exact path="/home" element={<Home />} />
+                <Route path="/location" element={<Location />} />
+                <Route path="/safety" element={<Guidelines />} />
+                {/* </Route> */}
 
                 <Route path="*" element={<NotFound />} />
               </Routes>
