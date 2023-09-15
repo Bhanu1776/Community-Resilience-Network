@@ -9,6 +9,7 @@ import Location from "./pages/location/Location";
 import NotFound from "./pages/notFound/NotFound";
 import Login from "./pages/login/Login";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import Header from "./components/Header";
 
 
 const useAuth = () => {
@@ -35,6 +36,7 @@ function App() {
           <QueryClientProvider client={queryClient}>
             <GoogleOAuthProvider clientId={clientId}>
               <Navbar/>
+              <Header/>
               <Routes>
                 <Route exact path="/" element={<Login />} />
                 <Route element={<ProtectedRoutes />}>
