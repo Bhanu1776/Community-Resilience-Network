@@ -1,47 +1,27 @@
-async function regSw() {
-    if ('serviceWorker' in navigator) {
-      try {
-        // URL to your service worker file
-        const swUrl = `${import.meta.env.VITE_PUBLIC_URL}/sw.js`;
-  
-        
-        const registration = await navigator.serviceWorker.register(swUrl, {
-          scope: '/',
-        });
-  
-        console.log('Service Worker registered with scope:', registration.scope);
-        
-        return registration;
-      } catch (error) {
-        console.error('Error registering Service Worker:', error);
-      }
-    } else {
-      console.warn('Service Worker is not supported in this browser.');
-    }
-  }
-  
-  export { regSw };
 
-  async function subscribe(serviceWorkerReg) {
-    try {
-      const subscription = await serviceWorkerReg.pushManager.getSubscription();
-  
-      if (!subscription) {
-        const applicationServerKey = import.meta.env.VITE_PUBLIC_KEY;
-  
-        const newSubscription = await serviceWorkerReg.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey,
-        });
-  
-        console.log('New subscription:', newSubscription);
-      } else {
-        console.log('Subscription already exists:', subscription);
-      }
-    } catch (error) {
-      console.error('Error subscribing:', error);
-    }
+import axios from 'axios';
+async function regSw () {
+  if ('serviceWorker' in navigator) {
+    let url = import.meta.env.VITE_PUBLIC_URL + '/sw.js';
+    const reg = await navigator.serviceWorker.register (url, {scope: '/'});
+    console.log ('service config is', {reg});
+    return reg;
   }
-  
-  export { subscribe };
-  
+  throw Error ('serviceworker not supported');
+}
+
+export { regSw };
+
+async function subscribe(serviceWorkerReg) {
+  let subscription = await serviceWorkerReg.pushManager.getSubscription();
+  console.log({ subscription });
+  if (subscription === null) {
+    subscription = await serviceWorkerReg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: import.meta.env.VITE_PUBLIC_KEY,
+    });
+  }
+  await axios.post('http://localhost:8800/subscribe', subscription)
+}
+
+export { subscribe };
