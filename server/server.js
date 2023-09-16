@@ -19,7 +19,7 @@ const connect = async () => {
     console.log(err);
   }
 };
-app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173", "https://hack-x.vercel.app"], credentials: true }));
 app.set("trust proxy", 1);
 
 app.use(express.json());
@@ -34,8 +34,8 @@ app.use("/about", (req, res) => {
 });
 
 app.use('/subscribe', async (req, res, next) => {
-  const newSubscription = await Subscription.create ({...req.body});
-  
+  const newSubscription = await Subscription.create({ ...req.body });
+
   const options = {
     vapidDetails: {
       subject: 'mailto:myemail@example.com',
@@ -44,9 +44,9 @@ app.use('/subscribe', async (req, res, next) => {
     },
   };
   try {
-    const res2 = await webPush.sendNotification (
+    const res2 = await webPush.sendNotification(
       newSubscription,
-      JSON.stringify ({
+      JSON.stringify({
         title: 'New Alert Raised',
         description: 'Checkout Maps for the alerts!!!',
         image: 'https://cdn2.vectorstock.com/i/thumb-large/94/66/emoji-smile-icon-symbol-smiley-face-vector-26119466.jpg',
@@ -55,8 +55,8 @@ app.use('/subscribe', async (req, res, next) => {
     );
     res.sendStatus(200)
   } catch (error) {
-    console.log (error);
-    res.sendStatus (500);
+    console.log(error);
+    res.sendStatus(500);
   }
 });
 

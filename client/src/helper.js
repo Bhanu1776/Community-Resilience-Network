@@ -1,13 +1,13 @@
 
 import axios from 'axios';
-async function regSw () {
+async function regSw() {
   if ('serviceWorker' in navigator) {
     let url = import.meta.env.VITE_PUBLIC_URL + '/sw.js';
-    const reg = await navigator.serviceWorker.register (url, {scope: '/'});
-    console.log ('service config is', {reg});
+    const reg = await navigator.serviceWorker.register(url, { scope: '/' });
+    console.log('service config is', { reg });
     return reg;
   }
-  throw Error ('serviceworker not supported');
+  throw Error('serviceworker not supported');
 }
 
 export { regSw };
@@ -21,7 +21,7 @@ async function subscribe(serviceWorkerReg) {
       applicationServerKey: import.meta.env.VITE_PUBLIC_KEY,
     });
   }
-  await axios.post('http://localhost:8800/subscribe', subscription)
+  await axios.post(import.meta.env.VITE_API_SUB, subscription)
 }
 
 export { subscribe };
