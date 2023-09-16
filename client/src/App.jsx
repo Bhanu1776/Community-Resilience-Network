@@ -50,13 +50,13 @@ function App() {
               <SubscribeButn />
               <Routes>
                 <Route exact path="/" element={<Landing />} />
-                {/* <Route element={<ProtectedRoutes />}> */}
-                <Route exact path="/home" element={<Home />} />
-                <Route path="/location" element={<Location />} />
-                <Route path="/safety" element={<Guidelines />} />
-                <Route path="/login" element={<Login />} />
-                {/* </Route> */}
+                <Route element={<ProtectedRoutes />}>
+                  <Route exact path="/home" element={<Home />} />
+                  <Route path="/location" element={<Location />} />
+                  <Route path="/safety" element={<Guidelines />} />
 
+                </Route>
+                <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </GoogleOAuthProvider>

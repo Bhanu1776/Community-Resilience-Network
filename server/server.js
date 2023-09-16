@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 import cors from "cors";
 import mongoose from "mongoose";
 import Subscription from "./models/subscription.model.js";
-
+import webPush from 'web-push'
 import authRoute from "./routes/auth.route.js";
-
+import incidentRoute from "./routes/incident.route.js";
 const app = express();
 dotenv.config();
 mongoose.set("strictQuery", true);
@@ -27,19 +27,36 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/auth", authRoute);
+app.use("/api/incidents", incidentRoute);
 
 app.use("/about", (req, res) => {
   res.send("CommuniSafe: A Community Resilience Network");
 });
 
-app.post("/subscribe", async (req, res, next) => {
+app.use('/subscribe', async (req, res, next) => {
+  const newSubscription = await Subscription.create ({...req.body});
+  
+  const options = {
+    vapidDetails: {
+      subject: 'mailto:myemail@example.com',
+      publicKey: process.env.PUBLIC_KEY,
+      privateKey: process.env.PRIVATE_KEY,
+    },
+  };
   try {
-    
-    const newSubscription = await Subscription.create({ ...req.body });
-    res.status(201).json({ message: "Subscription created successfully" });
+    const res2 = await webPush.sendNotification (
+      newSubscription,
+      JSON.stringify ({
+        title: 'New Alert Raised',
+        description: 'Checkout Maps for the alerts!!!',
+        image: 'https://cdn2.vectorstock.com/i/thumb-large/94/66/emoji-smile-icon-symbol-smiley-face-vector-26119466.jpg',
+      }),
+      options
+    );
+    res.sendStatus(200)
   } catch (error) {
-    console.error("Error creating subscription:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    console.log (error);
+    res.sendStatus (500);
   }
 });
 

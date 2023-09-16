@@ -9,7 +9,7 @@ export const places = [
   {
     id: 2,
     name: "Saftey House",
-    category: "Safety",
+    category: "Weather",
     position: { lat: 19.222719482358546, lng: 72.8566572066309 },
     icon: "http://maps.google.com/mapfiles/kml/pal2/icon10.png",
   },
@@ -23,7 +23,7 @@ export const places = [
   {
     id: 4,
     name: "Em1",
-    category: "Emergency",
+    category: "Hospital",
     position: { lat:19.24365965412434, lng:72.85804694480451 },
     icon: "http://maps.google.com/mapfiles/ms/micons/caution.png",
   },
@@ -37,14 +37,14 @@ export const places = [
   {
     id: 6,
     name: "Em3",
-    category: "Shelter",
+    category: "Natural",
     position: { lat:19.238324714042108, lng:72.84810712154419 },
     icon: "http://maps.google.com/mapfiles/ms/micons/caution.png",
   },
   {
     id: 7,
     name: "Em4",
-    category: "Saftey House",
+    category: "CSO",
     position: { lat:19.233098949871597, lng:72.86113802391023  },
     icon: "http://maps.google.com/mapfiles/ms/micons/caution.png",
   },

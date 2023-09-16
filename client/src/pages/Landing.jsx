@@ -15,12 +15,12 @@ const Landing = () => {
   };
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <a href="#" className="scrolltop" id="scroll-top">
         <i className="bx bx-up-arrow-alt scrolltop__icon"></i>
       </a>
 
-      <header className="l-header hidden md:block" id="header">
+      <header className="l-header hidden md:block border-2" id="header">
         <nav className="nav bd-container">
           <a href="#" className="nav__logo">
             {t("CommuniSafe")} {/* Translate the logo text */}
@@ -57,7 +57,7 @@ const Landing = () => {
         </nav>
       </header>
 
-      <main className="l-main flex flex-col w-screen overflow-x-hidden">
+      <main className="l-main flex flex-col w-screen">
         <section className="home mt-20 md:mt-0" id="home">
           <div className="home__container bd-container bd-grid">
             <div className="home__img">
@@ -88,7 +88,7 @@ const Landing = () => {
         </section>
 
         <section className="share section bd-container" id="share">
-          <div className="share__container bd-grid order-2">
+          <div className="share__container bd-grid">
             <div className="share__data">
               <h2 className="section-title-center font-semibold">
                 {t("Your Safety, Our Priority")}
@@ -103,7 +103,7 @@ const Landing = () => {
               </a>
             </div>
 
-            <div className="share__img order-1">
+            <div className="share__img">
               <img src="/img/shield.png" alt="" className="w-80 md:ml-10" />
             </div>
           </div>
