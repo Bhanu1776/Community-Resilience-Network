@@ -1,7 +1,9 @@
 import { AiFillHome, AiFillSafetyCertificate } from "react-icons/ai";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { HiOutlineLogout } from 'react-icons/hi'
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import newRequest from "../utils/newRequest";
 const icons = [
   {
     id: 1,
@@ -21,16 +23,28 @@ const icons = [
     url: "/safety",
     name: "Safety-Tips",
   },
-  {
-    id: 4,
-    icon: <FaUserAlt size={24} />,
-    url: "/location",
-    name: "Profile",
-  },
+  // {
+  //   id: 4,
+  //   icon: <FaUserAlt size={24} />,
+  //   url: "/location",
+  //   name: "Profile",
+  // },
 ];
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("currentUser"));
+  const navigate = useNavigate()
+  const handleLogout = async () => {
+    try {
+      await newRequest.post('auth/logout')
+      localStorage.setItem('currentUser', null)
+      navigate('/')
+      window.location.reload(true)
+    } catch (error) {
+
+      alert(error)
+    }
+  }
 
   return (
     <>
@@ -44,10 +58,17 @@ const Navbar = () => {
                 </span>
               </Link>
             ))}
+            <img
+              className="h-8 w-8 rounded-full"
+              src={user?.profileImg}
+              alt={user?.username}
+            />
           </div>
 
-          <div className="hidden p-2  w-full md:flex md:items-center justify-between ">
-            <p className=" font-bold tracking-wide">CommuniSafe</p>
+          <div className="hidden p-2  w-full md:flex md:items-center justify-between">
+            <Link to="/">
+              <p className=" font-bold tracking-wide">CommuniSafe</p>
+            </Link>
             <div className="flex w-[60%] justify-end gap-4 items-center">
               {icons.map((icon) => (
                 <Link key={icon.id} to={icon.url}>
@@ -56,11 +77,18 @@ const Navbar = () => {
                   </span>
                 </Link>
               ))}
-              <img
-                className="h-8 w-8 rounded-full"
-                src={user?.profileImg}
-                alt={user?.username}
-              />
+              {
+                user && (
+                  <img
+                    className="h-8 w-8 rounded-full"
+                    src={user?.profileImg}
+                    alt={user?.username}
+                  />
+                )
+              }
+              {
+                user && <HiOutlineLogout onClick={handleLogout} size={20} />
+              }
             </div>
           </div>
         </nav>
