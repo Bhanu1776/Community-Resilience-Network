@@ -3,15 +3,15 @@ import jwt from "jsonwebtoken";
 
 export const handleGoogleLogin = async (req, res, next) => {
   try {
-    const { email, username, profileImg, exp } = req.body; 
+    const { email, username, profileImg, exp } = req.body;
 
     let user = await User.findOne({ email });
 
     if (!user) {
-     
+
       const newUser = new User({
         username,
-        email, 
+        email,
         profileImg
       });
 
@@ -23,7 +23,7 @@ export const handleGoogleLogin = async (req, res, next) => {
       {
         id: user._id,
       },
-      process.env.JWT_KEY, {expiresIn: exp}
+      process.env.JWT_KEY, { expiresIn: exp }
     );
 
     const { password: _, ...info } = user._doc;
