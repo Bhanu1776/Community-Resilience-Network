@@ -1,38 +1,37 @@
-import { subscribe } from '../helper';
-import { regSw } from '../helper';
-import { useEffect, useState } from 'react';
+// import { subscribe } from '../helper';
+// import { regSw } from '../helper';
+// import { useEffect, useState } from 'react';
 
-function SubscribeButn() {
-  const handleSubscribe = async () => {
-    const serviceWorkerReg = await regSw();
-    await subscribe(serviceWorkerReg);
-  };
+// function SubscribeButn() {
+//   const handleSubscribe = async () => {
+//     const serviceWorkerReg = await regSw();
+//     await subscribe(serviceWorkerReg);
+//   };
 
+//   const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const [isSubscribed, setIsSubscribed] = useState(false);
+//   useEffect(() => {
 
-  useEffect(() => {
-   
-    const checkSubscription = async () => {
-      const serviceWorkerReg = await regSw();
-      const subscription = await serviceWorkerReg.pushManager.getSubscription();
-      setIsSubscribed(!!subscription);
-    };
+//     const checkSubscription = async () => {
+//       const serviceWorkerReg = await regSw();
+//       const subscription = await serviceWorkerReg.pushManager.getSubscription();
+//       setIsSubscribed(!!subscription);
+//     };
 
-    checkSubscription();
-  }, []);
+//     checkSubscription();
+//   }, []);
 
-  return (
-    
-    !isSubscribed && (
-      <button
-        className='z-[150] fixed left-2 top-20 p-2 bg-blue-400 rounded-lg text-white'
-        onClick={handleSubscribe}
-      >
-        Subscribe
-      </button>
-    )
-  );
-}
+//   return (
 
-export default SubscribeButn;
+//     !isSubscribed && (
+//       <button
+//         className='z-[150] fixed left-2 top-20 p-2 bg-blue-400 rounded-lg text-white'
+//         onClick={handleSubscribe}
+//       >
+//         Subscribe
+//       </button>
+//     )
+//   );
+// }
+
+// export default SubscribeButn;

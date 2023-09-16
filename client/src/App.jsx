@@ -16,7 +16,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Header from "./components/Header";
 import { regSw } from "./helper";
 import { useEffect } from "react";
-import SubscribeButn from "./components/SubscribeButn";
+// import SubscribeButn from "./components/SubscribeButn";
 import Landing from "./pages/Landing";
 
 const useAuth = () => {
@@ -47,15 +47,15 @@ function App() {
             <GoogleOAuthProvider clientId={clientId}>
               <Navbar />
               <Header />
-              <SubscribeButn />
+              {/* <SubscribeButn /> */}
               <Routes>
                 <Route exact path="/" element={<Landing />} />
-                <Route element={<ProtectedRoutes />}>
-                  <Route exact path="/home" element={<Home />} />
-                  <Route path="/location" element={<Location />} />
-                  <Route path="/safety" element={<Guidelines />} />
+                {/* <Route element={<ProtectedRoutes />}> */}
+                <Route exact path="/home" element={<Home />} />
+                <Route path="/location" element={<Location />} />
+                <Route path="/safety" element={<Guidelines />} />
 
-                </Route>
+                {/* </Route> */}
                 <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
