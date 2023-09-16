@@ -5,13 +5,19 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import newRequest from "../utils/newRequest.js";
+import { subscribe } from '../helper.js'; // Import your subscribe function
+import { regSw } from "../helper.js"
 // import newRequest from "../utils/newRequest";
 // import upload from "../utils/upload";
 
 export const Home = () => {
   const [open, setOpen] = React.useState(false);
   const [category, setcategory] = React.useState("")
-
+  const [uploading, setUploading] = React.useState(false);
+  const [err, setErr] = React.useState(null);
+  const queryClient = useQueryClient();
   const handleChange = (event) => {
     setcategory(event.target.value);
   };
@@ -23,10 +29,69 @@ export const Home = () => {
   const handleClose = () => {
     setOpen(false);
   };
+  const [lat, setLat] = React.useState(null);
+  const [lng, setLng] = React.useState(null);
+  
+  const [status, setStatus] = React.useState("Loading...");
+  React.useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          setStatus(null);
+          setLat(pos.coords.latitude);
+          setLng(pos.coords.longitude);
+        },
+        () => setStatus("Unable to retrieve Location")
+      );
+    } else {
+      setStatus("Not Supported");
+    }
+  }, []);
+
+  const sendPushNotification = async () => {
+    try {
+      const serviceWorkerReg = await regSw();
+      await subscribe(serviceWorkerReg);
+    } catch (error) {
+      console.error('Error sending push notification:', error);
+    }
+  };
+  
+  const addAlert = useMutation(
+    () => {
+      return newRequest.post(`incidents`, {
+        category: category,
+        icon: "http://maps.google.com/mapfiles/ms/micons/caution.png",
+        latitude: lat,
+        longitude: lng
+
+      });
+    },
+    {
+      onSuccess:  async() => {
+        queryClient.invalidateQueries("markers");
+        await sendPushNotification();
+        alert("Alerted Successfully")
+        setOpen(false);
+      },
+      onError: (error) => {
+        console.error("Upload error:", error);
+        alert(error)
+      },
+    }
+  );
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await addAlert.mutateAsync();
+    } catch (error) {
+      setUploading(false)
+      setErr(error.response.data);
+      console.error(error);
+    }
 
-    // const url = await upload(file);
+
+
 
   };
   return (
@@ -44,7 +109,7 @@ export const Home = () => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Raise an Alert</DialogTitle>
         <DialogContent>
-          <FormControl className="w-[500px]"  fullWidth>
+          <FormControl className="w-[500px]" fullWidth>
             <InputLabel className="mt-2 " id="demo-simple-select-label">Category</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -58,7 +123,7 @@ export const Home = () => {
               <MenuItem value={"Weather"}>Weather related</MenuItem>
             </Select>
           </FormControl>
-          
+
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
