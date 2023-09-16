@@ -1,9 +1,9 @@
 import * as React from "react";
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../utils/newRequest.js";
@@ -95,7 +95,7 @@ export const Home = () => {
 
   };
   return (
-    <><div className="flex items-center justify-center w-full min-h-screen">
+    <div className="flex bg-gradient-to-b from-gray-50 to-pink-200 items-center justify-center w-full min-h-screen">
       <button
         className="relative top-0 left-0 p-20 text-4xl font-semibold tracking-wider text-white transition-all duration-150 ease-in-out bg-pink-700 rounded-full hover:bg-pink-800 aspect-square outline hover:outline-2 hover:outline-offset-2 hover:outline-neutral-800"
         onClick={handleOpen}
@@ -131,6 +131,5 @@ export const Home = () => {
         </DialogActions>
       </Dialog>
     </div>
-    </>
   );
 };

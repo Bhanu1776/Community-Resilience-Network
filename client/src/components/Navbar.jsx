@@ -48,9 +48,9 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="fixed md:bg-white border-t-[1px] md:border-b-[1px] flex justify-center bottom-0 md:top-0 left-0 z-[100] h-16 w-full">
-        <nav className="flex flex-wrap items-center justify-between w-full max-w-[1200px] h-full  text-lg text-gray-700 bg-white">
-          <div className="flex px-4 py-2 md:hidden items-center justify-between w-full">
+      <header className="fixed md:bg-white border-t-[1px] font-Poppins md:border-b-[1px] flex justify-center bottom-0 md:top-0 left-0 z-[100] h-16 w-full">
+        <nav className="flex flex-wrap items-center px-24 justify-between w-full max-w-[1200px] h-full  text-lg text-gray-700 bg-white">
+          <div className="flex px-4 py-2 md:hidden items-center  justify-between w-full">
             {icons.map((icon) => (
               <Link to={icon.url} key={icon.id}>
                 <span className="hover:text-pink-800 ease-in-out duration-200">

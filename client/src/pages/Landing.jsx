@@ -20,7 +20,7 @@ const Landing = () => {
         <i className="bx bx-up-arrow-alt scrolltop__icon"></i>
       </a>
 
-      <header className="l-header hidden md:block" id="header">
+      <header className="l-header hidden md:block border-2" id="header">
         <nav className="nav bd-container">
           <a href="#" className="nav__logo">
             {t("CommuniSafe")} {/* Translate the logo text */}
