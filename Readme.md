@@ -25,6 +25,23 @@ in real-time, with `GeoLocation` and multimedia capabilities.
 local authorities, and emergency responders, each with specific
 permissions.
 
+## Technologies 🔧
+
+- HTML, CSS, Javascript
+- React
+- NodeJs
+- Express.js
+- MongoDB
+- TailwindCss
+- Material UI(MUI)
+- JWT Auth
+- Bycrypt
+- Progressive Web APP(PWA)  
+- Tanstack React Query
+- Google Maps API
+- Internationalization(i18n)
+- And much more 🎒
+
 ## Code Example/Issues 🔍
 
 If you have any issues, please let me know in the issues section or directly to <sunkabhanu281202@gmail.com>
