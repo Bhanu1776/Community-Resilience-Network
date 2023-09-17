@@ -1,8 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { subscribe } from "../helper";
+import { regSw } from "../helper";
 import "../styles/styles.css";
 import { useTranslation } from "react-i18next";
 
 const Landing = () => {
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
@@ -13,6 +17,21 @@ const Landing = () => {
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
+
+  const handleSubscribe = async () => {
+    const serviceWorkerReg = await regSw();
+    await subscribe(serviceWorkerReg);
+  };
+
+  useEffect(() => {
+    const checkSubscription = async () => {
+      const serviceWorkerReg = await regSw();
+      const subscription = await serviceWorkerReg.pushManager.getSubscription();
+      setIsSubscribed(!!subscription);
+    };
+
+    checkSubscription();
+  }, []);
 
   return (
     <div className="overflow-x-hidden">
@@ -185,7 +204,7 @@ const Landing = () => {
       </main>
 
       <footer className="footer section">
-        <div className="footer__container bd-container bd-grid flex flex-col md:flex-row">
+        <div className="footer__container bd-container bd-grid flex flex-col md:gap-20 md:flex-row">
           <div className="footer__content">
             <h3 className="footer__title">
               <a href="#" className="footer__logo">
@@ -262,6 +281,19 @@ const Landing = () => {
             <a href="#" className="footer__social">
               <i className="bx bxl-instagram-alt"></i>
             </a>
+            <ul>
+              {isSubscribed && (
+                <li>
+                  <a
+                    href="#"
+                    className="footer__link underline text-pink-600"
+                    onClick={() => handleSubscribe()}
+                  >
+                    {t("Subscribe")}
+                  </a>
+                </li>
+              )}
+            </ul>
           </div>
         </div>
 
