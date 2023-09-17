@@ -91,3 +91,18 @@ Simultaneously Run Node.js Server :
 ```bash
 npm start
 ```
+
+## Contributing
+
+This is an open source project, and contributions of any kind are welcome and appreciated. Open issues, bugs, and feature requests are all listed on the [issues](https://github.com/Bhanu1776/Community-Resilience-Network/issues) tab and labeled accordingly. Feel free to open bug tickets and make feature requests.
+
+## Contributors 💣
+
+<a href="https://github.com/Bhanu1776/Community-Resilience-Network/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Bhanu1776/Community-Resilience-Network" />
+</a>
+
+<hr>
+
+© 2022 Bhanu Sunka and contributors\
+This project is licensed under the [**MIT license**](https://github.com/Bhanu1776/Community-Resilience-Network/blob/master/client/LICENSE).
