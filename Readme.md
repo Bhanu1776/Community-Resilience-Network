@@ -37,7 +37,7 @@ permissions.
 - Bycrypt
 - Tanstack React Query
 - Google Maps API
-- Progressive Web APP(PWA)  
+- Progressive Web App(PWA)  
 - Internationalization(i18n)
 - And much more 🎒
 
@@ -45,29 +45,30 @@ permissions.
 
 <div align="center">
 
-![CommuniSafe](https://i.imgur.com/AJ6TpHL.png)
+![CommuniSafe](https://i.imgur.com/cpB4D2v.png)
  <i style="font-size: .8em">Informative Landing page</i>
 
 <br>
 
-![Multilingual support)](https://i.imgur.com/2v4nNSj.png)
- <i style="font-size: .8em">Multi Languages support (English, Hindi, Telugu)</i>
+![Multilingual support](https://i.imgur.com/KXXQnmM.png)
+ <i style="font-size: .8em">Multi Language support (English, Hindi, Telugu)</i>
 
 <br>
+
+![Google SignIn](https://i.imgur.com/NFv4pU6.png)
+ <i style="font-size: .8em">Ease Login with Google Account</i>
+
+<br>
+
+![Incident reports on a map](https://i.imgur.com/2JWRsJH.png)
+ <i style="font-size: .8em">Incident reports on a map for better visualization of incident locations</i>
 
 ![Safety Measure Guides](https://i.imgur.com/R64cTEH.png)
  <i style="font-size: .8em">Safety measure guides for every situation</i>
 
 <br>
 
-![Safety Measure Guides](https://i.imgur.com/2JWRsJH.png)
- <i style="font-size: .8em">Incident reports on a map for better visualization of incident locations</i>
-
 </div>
-
-## Code Example/Issues 🔍
-
-If you have any issues, please let me know in the issues section or directly to <sunkabhanu281202@gmail.com>
 
 ## Installation 💾
 
@@ -103,19 +104,19 @@ Install deps:
 npm install
 ```
 
-Run App from `Client` folder :
+Run App from `client` folder :
 
 ```bash
 npm run dev
 ```
 
-Simultaneously Run Node.js Server :
+Simultaneously Run Node.js Server from `server` folder :
 
 ```bash
 npm start
 ```
 
-## Contributing
+## Contributing 🔍
 
 This is an open source project, and contributions of any kind are welcome and appreciated. Open issues, bugs, and feature requests are all listed on the [issues](https://github.com/Bhanu1776/Community-Resilience-Network/issues) tab and labeled accordingly. Feel free to open bug tickets and make feature requests.
 
