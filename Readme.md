@@ -24,3 +24,53 @@ in real-time, with `GeoLocation` and multimedia capabilities.
 4. Implement `role-based access control` for community members,
 local authorities, and emergency responders, each with specific
 permissions.
+
+## Code Example/Issues 🔍
+
+If you have any issues, please let me know in the issues section or directly to <sunkabhanu281202@gmail.com>
+
+## Installation 💾
+
+```bash
+git clone https://github.com/Bhanu1776/Community-Resilience-Network.git
+```
+
+Create config.env file in `sever` folder and Fill your `.env` variables:
+
+```env
+MONGO = 
+PORT = 
+JWT_KEY = 
+PUBLIC_KEY = 
+PRIVATE_KEY = 
+```
+
+In the same way create '.env' file in your `client` folder:
+
+```env
+VITE_GOOGLE_API_KEY = "Your Own Google API key"
+VITE_GOOGLE_CLIENT_ID = "Your Own generated Google Client ID"
+VITE_PUBLIC_KEY = "Your Own Public key"
+VITE_PRIVATE_KEY = "Your Own Private key"
+VITE_API_BASE_URL = "https://communisafe.onrender.com/api/" 
+VITE_PUBLIC_URL = "http://localhost:5173"
+VITE_API_SUB= "http://localhost:8800/subscribe"
+```
+
+Install deps:
+
+```bash
+npm install
+```
+
+Run App from `Client` folder :
+
+```bash
+npm run dev
+```
+
+Simultaneously Run Node.js Server :
+
+```bash
+npm start
+```
