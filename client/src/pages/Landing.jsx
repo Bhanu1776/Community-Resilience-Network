@@ -89,7 +89,7 @@ const Landing = () => {
 
             <div className="home__data flex flex-col justify-center items-center md:items-start md:justify-start">
               <h1
-                className="home__title text-center md:text-left text-3x md:text-4xl"
+                className="home__title text-center md:text-left"
                 style={{ width: "438px" }}
               >
                 {t("Building Stronger Communities Together")}
