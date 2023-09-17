@@ -42,7 +42,7 @@ const Landing = () => {
       <header className="l-header hidden md:block border-2" id="header">
         <nav className="nav bd-container">
           <a href="#" className="nav__logo">
-            {t("CommuniSafe")} {/* Translate the logo text */}
+            {t("CommuniSafe")}
           </a>
 
           <div className="nav__menu" id="nav-menu">
@@ -54,12 +54,12 @@ const Landing = () => {
               </li>
               <li className="nav__item">
                 <a href="#share" className="nav__link">
-                  {t("Learn")} {/* Translate "Learn" */}
+                  {t("Learn")}
                 </a>
               </li>
               <li className="nav__item">
                 <a href="#decoration" className="nav__link">
-                  {t("Features")} {/* Translate "Features" */}
+                  {t("Features")}
                 </a>
               </li>
               <li className="nav__item">
@@ -78,23 +78,23 @@ const Landing = () => {
 
       <main className="l-main flex flex-col w-screen">
         <section className="home mt-20 md:mt-0" id="home">
-          <div className="home__container bd-container bd-grid">
+          <div className="home__container bd-container bd-grid justify-center items-center">
             <div className="home__img">
               <img
                 src="/img/communities.png"
                 alt=""
-                className="md:w-80 hidden md:block"
+                className="md:w-80 hidden md:block lg:ml-20"
               />
             </div>
 
-            <div className="home__data">
+            <div className="home__data flex flex-col justify-center items-center md:items-start md:justify-start">
               <h1
-                className="home__title text-center md:text-left"
+                className="home__title text-center md:text-left text-3x md:text-4xl"
                 style={{ width: "438px" }}
               >
                 {t("Building Stronger Communities Together")}
               </h1>
-              <p className="home__description text-center md:text-left">
+              <p className="home__description text-center md:text-left mx-8 md:mx-0">
                 {t(
                   "Discover how our Community Resilience Network empowers individuals and neighborhoods to thrive in the face of challenges."
                 )}
@@ -109,7 +109,7 @@ const Landing = () => {
         <section className="share section bd-container" id="share">
           <div className="share__container bd-grid">
             <div className="share__data">
-              <h2 className="section-title-center font-semibold">
+              <h2 className="section-title-center font-semibold text-2xl">
                 {t("Your Safety, Our Priority")}
               </h2>
               <p className="share__description">
@@ -122,22 +122,29 @@ const Landing = () => {
               </a>
             </div>
 
-            <div className="share__img">
-              <img src="/img/shield.png" alt="" className="w-80 md:ml-10" />
+            <div className="share__img flex justify-center items-center">
+              <img
+                src="/img/shield.png"
+                alt=""
+                className="md:w-80 md:ml-10 w-60"
+              />
             </div>
           </div>
         </section>
 
-        <section className="decoration section bd-container" id="decoration">
-          <h2 className="section-title font-semibold">
+        <section
+          className="decoration section bd-container pt-14"
+          id="decoration"
+        >
+          <h2 className="section-title font-semibold text-2xl md:text-3xl ">
             {t("Exciting features of")} <br /> CommuniSafe
           </h2>
           <div className="decoration__container bd-grid">
-            <div className="decoration__data">
+            <div className="decoration__data flex flex-col justify-center items-center">
               <img
                 src="/img/global-network.png"
                 alt=""
-                className="decoration__img m-5 ml-9"
+                className="decoration__img my-5"
               />
               <h3 className="decoration__title">{t("Community Networking")}</h3>
               <a href="#" className="button button-link">
@@ -145,11 +152,11 @@ const Landing = () => {
               </a>
             </div>
 
-            <div className="decoration__data">
+            <div className="decoration__data flex flex-col justify-center items-center">
               <img
                 src="/img/siren.png"
                 alt=""
-                className="decoration__img m-5 ml-9"
+                className="decoration__img my-5 md:ml-2 "
               />
               <h3 className="decoration__title">{t("Emergency Alerts")}</h3>
               <a href="#" className="button button-link">
@@ -157,11 +164,11 @@ const Landing = () => {
               </a>
             </div>
 
-            <div className="decoration__data">
+            <div className="decoration__data flex flex-col justify-center items-center">
               <img
                 src="/img/forum.png"
                 alt=""
-                className="decoration__img m-5 ml-9"
+                className="decoration__img my-5"
               />
               <h3 className="decoration__title">{t("Community Forums")}</h3>
               <a href="#" className="button button-link">
@@ -173,23 +180,23 @@ const Landing = () => {
 
         <section className="send section">
           <div className="send__container bd-container bd-grid">
-            <div className="send__content">
+            <div className="send__content md:ml-10">
               <h2 className="section-title-center send__title">
                 {t("Text your Queries!")}
               </h2>
-              <p className="send__description">
+              <p className="send__description m-4 md:m-0">
                 {t(
                   "Explore how our community network offers crucial support systems, resources, and solidarity during crises and emergencies."
                 )}
               </p>
               <form action="">
-                <div className="send__direction">
+                <div className="send__direction mt-8">
                   <input
                     type="text"
                     placeholder={t("Message")}
-                    className="send__input"
+                    className="send__inputs"
                   />
-                  <a href="#" className="button">
+                  <a href="#" className="button ">
                     {t("Send")}
                   </a>
                 </div>
@@ -197,7 +204,7 @@ const Landing = () => {
             </div>
 
             <div className="send__img">
-              <img src="/img/queries.png" alt="" className=" ml-24 w-80" />
+              <img src="/img/queries.png" alt="" className="  w-30 md:w-80" />
             </div>
           </div>
         </section>
