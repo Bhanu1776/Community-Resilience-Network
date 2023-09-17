@@ -1,6 +1,6 @@
 /*global google */
 import { useEffect, useMemo, useState } from "react";
-import { GoogleMap, MarkerF, CircleF, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, MarkerF, CircleF, useLoadScript, InfoWindowF } from "@react-google-maps/api";
 import { places } from "../../data/places";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest.js";
@@ -67,8 +67,9 @@ const Location = () => {
     map.fitBounds(bounds);
 
   };
-  
+
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedIncident, setSelectedIncident] = useState(null);
   const filteredPlaces = selectedCategory
     ? places.filter(place => place.category === selectedCategory)
     : places;
@@ -85,7 +86,7 @@ const Location = () => {
       </div> */}
       {/* map */}
       <div className="flex flex-1 bg-white">
-        
+
         {!isLoaded ? (
           <h1>{status}</h1>
         ) : (
@@ -113,29 +114,50 @@ const Location = () => {
               visible: true,
               strokeColor: "red"
             }} />
-            
+
             {!isLoading && !error && data && data.length > 0 && (
-              data
-                .filter((incident) =>
-                  selectedCategory ? incident.category === selectedCategory : true
-                )
-                .map((incident) => (
-                  <MarkerF
-                    key={incident._id}
+              <>
+                {data
+                  .filter(incident =>
+                    selectedCategory ? incident.category === selectedCategory : true
+                  )
+                  .map(incident => (
+                    <MarkerF
+                      key={incident._id}
+                      position={{
+                        lat: incident.latitude,
+                        lng: incident.longitude,
+                      }}
+                      icon={{ url: incident.icon }}
+                      onClick={() => {
+                        setSelectedIncident(incident);
+                      }}
+                    />
+                  ))}
+
+                {selectedIncident && (
+                  <InfoWindowF
                     position={{
-                      lat: incident.latitude,
-                      lng: incident.longitude,
+                      lat: selectedIncident.latitude,
+                      lng: selectedIncident.longitude,
                     }}
-                    icon={{ url: incident.icon }}
-                  />
-                ))
+                    onCloseClick={() => {
+                      setSelectedIncident(null);
+                    }}
+                  >
+                    <div>
+                      <h3>{selectedIncident.category}</h3>
+                    </div>
+                  </InfoWindowF>
+                )}
+              </>
             )}
           </GoogleMap>
         )}
       </div>
       <div className="fixed top-20 right-4 z-[150]">
-          <CategoryFilter onSelectCategory={setSelectedCategory} />
-        </div>
+        <CategoryFilter onSelectCategory={setSelectedCategory} />
+      </div>
     </div>
   )
 }
