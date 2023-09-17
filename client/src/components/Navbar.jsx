@@ -1,7 +1,7 @@
 import { AiFillHome, AiFillSafetyCertificate } from "react-icons/ai";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
-import { HiOutlineLogout } from 'react-icons/hi'
+import { HiOutlineLogout } from "react-icons/hi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import newRequest from "../utils/newRequest";
 const icons = [
@@ -33,18 +33,17 @@ const icons = [
 
 const Navbar = () => {
   const user = JSON.parse(localStorage.getItem("currentUser"));
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleLogout = async () => {
     try {
-      await newRequest.post('auth/logout')
-      localStorage.setItem('currentUser', null)
-      navigate('/')
-      window.location.reload(true)
+      await newRequest.post("auth/logout");
+      localStorage.setItem("currentUser", null);
+      navigate("/");
+      window.location.reload(true);
     } catch (error) {
-
-      alert(error)
+      alert(error);
     }
-  }
+  };
 
   return (
     <>
@@ -77,18 +76,14 @@ const Navbar = () => {
                   </span>
                 </Link>
               ))}
-              {
-                user && (
-                  <img
-                    className="h-8 w-8 rounded-full"
-                    src={user?.profileImg}
-                    alt={user?.username}
-                  />
-                )
-              }
-              {
-                user && <HiOutlineLogout onClick={handleLogout} size={20} />
-              }
+              {user && (
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={user?.profileImg}
+                  alt={user?.username}
+                />
+              )}
+              {user && <HiOutlineLogout onClick={handleLogout} size={20} />}
             </div>
           </div>
         </nav>
