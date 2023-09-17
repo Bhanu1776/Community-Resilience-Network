@@ -8,7 +8,7 @@ We seek innovative solutions to develop a comprehensive
 Community Resilience Network (CRN) - a digital platform designed
 to empower communities in preparing for, responding to, and
 recovering from disasters. Participants are tasked with designing and
-developing a web and mobile application that fosters community
+developing a web application that fosters community
 collaboration, provides critical information, and facilitates disaster
 preparedness and response. The CRN should encompass the
 following features:
@@ -16,19 +16,18 @@ following features:
 1. Provide `automated alerts and notifications` for various types of
 disasters, including weather-related events, natural disasters, and
 emergencies, along with safety recommendations.
-2. Develop a `comprehensive directory` of local resources, including
+1. Develop a `comprehensive directory` of local resources, including
 emergency shelters, medical facilities, and community support
 organizations.
-3. Allow users to `report incidents`, hazards, and emergencies
+1. Allow users to `report incidents`, hazards, and emergencies
 in real-time, with `GeoLocation` and multimedia capabilities.
-4. Implement `role-based access control` for community members,
+1. Implement `role-based access control` for community members,
 local authorities, and emergency responders, each with specific
 permissions.
 
 ## Technologies 🔧
 
-- HTML, CSS, Javascript
-- React
+- ReactJs
 - NodeJs
 - Express.js
 - MongoDB
@@ -36,11 +35,35 @@ permissions.
 - Material UI(MUI)
 - JWT Auth
 - Bycrypt
-- Progressive Web APP(PWA)  
 - Tanstack React Query
 - Google Maps API
+- Progressive Web APP(PWA)  
 - Internationalization(i18n)
 - And much more 🎒
+
+## Screenshots 📸
+
+<div align="center">
+
+![CommuniSafe](https://i.imgur.com/AJ6TpHL.png)
+ <i style="font-size: .8em">Informative Landing page</i>
+
+<br>
+
+![Multilingual support)](https://i.imgur.com/2v4nNSj.png)
+ <i style="font-size: .8em">Multi Languages support (English, Hindi, Telugu)</i>
+
+<br>
+
+![Safety Measure Guides](https://i.imgur.com/R64cTEH.png)
+ <i style="font-size: .8em">Safety measure guides for every situation</i>
+
+<br>
+
+![Safety Measure Guides](https://i.imgur.com/2JWRsJH.png)
+ <i style="font-size: .8em">Incident reports on a map for better visualization of incident locations</i>
+
+</div>
 
 ## Code Example/Issues 🔍
 
@@ -104,5 +127,7 @@ This is an open source project, and contributions of any kind are welcome and ap
 
 <hr>
 
-© 2022 Bhanu Sunka and contributors\
+© 2023 Bhanu Sunka and contributors
 This project is licensed under the [**MIT license**](https://github.com/Bhanu1776/Community-Resilience-Network/blob/master/client/LICENSE).
+
+![Love](https://img.shields.io/badge/I%20%E2%9D%A4%20-OpenSource-%23ff0055)
