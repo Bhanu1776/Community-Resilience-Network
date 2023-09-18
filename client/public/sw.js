@@ -51,6 +51,7 @@ self.addEventListener("push", async (event) => {
       icon: image,
       actions: [
         {
+          action: "alert-action",
           title: "Alert Raised!",
         },
       ],

@@ -20,8 +20,9 @@ async function subscribe(serviceWorkerReg) {
       userVisibleOnly: true,
       applicationServerKey: import.meta.env.VITE_PUBLIC_KEY,
     });
+    await axios.post(import.meta.env.VITE_API_SUB, subscription)
   }
-  await axios.post(import.meta.env.VITE_API_SUB, subscription)
+  
 }
 
 export { subscribe };

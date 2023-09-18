@@ -71,13 +71,15 @@ export const Home = () => {
     {
       onSuccess: async () => {
         queryClient.invalidateQueries("markers");
-        await newRequest.post('http://localhost:8800/send-push')
+        await newRequest.post(`${import.meta.env.VITE_NOTI}`,{
+          title: category
+        })
         alert("Alerted Successfully")
         setOpen(false);
       },
       onError: (error) => {
         console.error("Upload error:", error);
-        alert(error)
+        
       },
     }
   );
