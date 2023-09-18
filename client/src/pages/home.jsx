@@ -31,7 +31,7 @@ export const Home = () => {
   };
   const [lat, setLat] = React.useState(null);
   const [lng, setLng] = React.useState(null);
-  
+
   const [status, setStatus] = React.useState("Loading...");
   React.useEffect(() => {
     if (navigator.geolocation) {
@@ -40,6 +40,7 @@ export const Home = () => {
           setStatus(null);
           setLat(pos.coords.latitude);
           setLng(pos.coords.longitude);
+          sendPushNotification();
         },
         () => setStatus("Unable to retrieve Location")
       );
@@ -56,7 +57,7 @@ export const Home = () => {
       console.error('Error sending push notification:', error);
     }
   };
-  
+
   const addAlert = useMutation(
     () => {
       return newRequest.post(`incidents`, {
@@ -68,9 +69,9 @@ export const Home = () => {
       });
     },
     {
-      onSuccess:  async() => {
+      onSuccess: async () => {
         queryClient.invalidateQueries("markers");
-        await sendPushNotification();
+        await newRequest.post('http://localhost:8800/send-push')
         alert("Alerted Successfully")
         setOpen(false);
       },
