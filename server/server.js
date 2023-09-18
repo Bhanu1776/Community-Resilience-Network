@@ -33,32 +33,52 @@ app.use("/about", (req, res) => {
   res.send("CommuniSafe: A Community Resilience Network");
 });
 
-app.use('/subscribe', async (req, res, next) => {
-  const newSubscription = await Subscription.create ({...req.body});
-  
-  const options = {
-    vapidDetails: {
-      subject: 'mailto:myemail@example.com',
-      publicKey: process.env.PUBLIC_KEY,
-      privateKey: process.env.PRIVATE_KEY,
-    },
-  };
+// Configure web-push with your VAPID keys
+webPush.setVapidDetails(
+  'mailto:mrunalvaidya0715@gmail.com', 
+  process.env.PUBLIC_KEY,
+  process.env.PRIVATE_KEY
+);
+
+app.use('/subscribe', async(req,res,next)=>{
   try {
-    const res2 = await webPush.sendNotification (
-      newSubscription,
-      JSON.stringify ({
-        title: 'New Alert Raised',
-        description: 'Checkout Maps for the alerts!!!',
-        image: 'https://cdn2.vectorstock.com/i/thumb-large/94/66/emoji-smile-icon-symbol-smiley-face-vector-26119466.jpg',
-      }),
-      options
-    );
-    res.sendStatus(200)
+    const newSub = await Subscription.create({...req.body});
+    res.status(201).send(newSub);
   } catch (error) {
-    console.log (error);
-    res.sendStatus (500);
+    next(error);
+  }
+})
+
+// Define an endpoint to send a push message
+app.post('/send-push', async (req, res,next) => {
+  
+  const notification = {
+    title: 'New Alert Raised',
+    body: 'Checkout Maps to view Alerts!!',
+  };
+
+  try {
+    const subscriptions = await Subscription.find();
+    const pushPromises = subscriptions.map(async (subscription) => {
+      await webPush.sendNotification(subscription, JSON.stringify(notification));
+    });
+    await Promise.all(pushPromises);
+    res.status(201).json({ message: 'Push messages sent successfully' });
+  } catch (error) {
+    next(error);
+    
   }
 });
+
+app.get('/getSubs',async(req,res,next)=>{
+  try {
+    const subs = await Subscription.find();
+    res.status(200).send(subs)
+  } catch (error) {
+    next(error)
+  }
+})
+
 
 app.use("/", (req, res) => {
   res.send("Reserved for CommuniSafe");

@@ -20,8 +20,9 @@ async function subscribe(serviceWorkerReg) {
       userVisibleOnly: true,
       applicationServerKey: import.meta.env.VITE_PUBLIC_KEY,
     });
+    await axios.post('http://localhost:8800/subscribe', subscription)
   }
-  await axios.post('http://localhost:8800/subscribe', subscription)
+  
 }
 
 export { subscribe };
