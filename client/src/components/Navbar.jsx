@@ -83,7 +83,13 @@ const Navbar = () => {
                   alt={user?.username}
                 />
               )}
-              {user && <HiOutlineLogout onClick={handleLogout} size={20} />}
+              {user && (
+                <HiOutlineLogout
+                  onClick={handleLogout}
+                  size={20}
+                  className="cursor-pointer"
+                />
+              )}
             </div>
           </div>
         </nav>

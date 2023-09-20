@@ -123,11 +123,7 @@ const Landing = () => {
             </div>
 
             <div className="share__img flex justify-center items-center">
-              <img
-                src="/img/shield.png"
-                alt=""
-                className="md:w-80 md:ml-10 w-60"
-              />
+              <img src="/img/shield.png" alt="" className="md:w-80 w-60" />
             </div>
           </div>
         </section>
